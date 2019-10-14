@@ -3,18 +3,19 @@ Answer the following questions for each of the data structures you implemented a
 ## Queue
 
 1. What is the runtime complexity of `enqueue`?
-
+   Constant/O(1), just adds right onto the end of the DLL
 2. What is the runtime complexity of `dequeue`?
-
+   Constant/O(1), just removes the head from the DLL if necessary
 3. What is the runtime complexity of `len`?
+   Constant/O(1), just returning a class attribute
 
 ## Binary Search Tree
 
-1. What is the runtime complexity of `insert`? 
+1. What is the runtime complexity of `insert`?
 
 2. What is the runtime complexity of `contains`?
 
-3. What is the runtime complexity of `get_max`? 
+3. What is the runtime complexity of `get_max`?
 
 ## Heap
 
