@@ -44,9 +44,10 @@ class BinarySearchTree:
     # Return the maximum value found in the tree
     def get_max(self):
         # Iterative option
-        while self:
-            max_value = self.value
-            self = self.right
+        current = self
+        while current:
+            max_value = current.value
+            current = current.right
         return max_value
         # Recursive option
         # if not self.right:
@@ -77,13 +78,29 @@ class BinarySearchTree:
     # in an iterative breadth first traversal
 
     def bft_print(self, node):
-        pass
+        queue = Queue()
+        queue.enqueue(node)
+        while queue.len() > 0:
+            current_node = queue.dequeue()
+            print(current_node.value)
+            if current_node.left:
+                queue.enqueue(current_node.left)
+            if current_node.right:
+                queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
 
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(node)
+        while stack.len() > 0:
+            current_node = stack.pop()
+            print(current_node.value)
+            if current_node.left:
+                stack.push(current_node.left)
+            if current_node.right:
+                stack.push(current_node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
@@ -108,4 +125,4 @@ bst.insert(4)
 bst.insert(2)
 
 
-bst.in_order_print(bst)
+bst.dft_print(bst)
