@@ -14,10 +14,10 @@ class Stack:
         self.size += 1
 
     def pop(self):
-        value = self.storage.remove_from_head()
-        if value:
+        if self.size:
             self.size -= 1
-        return value
+            return self.storage.remove_from_head()
+        return None
 
     def len(self):
         return self.size
