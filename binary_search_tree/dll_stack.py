@@ -3,34 +3,18 @@ import sys
 sys.path.append('../doubly_linked_list')
 
 
-# class Queue(DoublyLinkedList):
-#     def __init__(self, node=None):
-#         super().__init__(node)
-
-#     def enqueue(self, value):
-#         self.add_to_tail(value)
-
-#     def dequeue(self):
-#         if self.length == 0:
-#             return None
-#         return self.remove_from_head()
-
-#     def len(self):
-#         return self.length
-
-
-class Queue:
+class Stack():
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
         # self.storage = ?
         self.storage = DoublyLinkedList()
 
-    def enqueue(self, value):
-        self.storage.add_to_tail(value)
+    def push(self, value):
+        self.storage.add_to_head(value)
         self.size += 1
 
-    def dequeue(self):
+    def pop(self):
         if self.size == 0:
             return None
         self.size -= 1
