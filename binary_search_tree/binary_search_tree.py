@@ -8,9 +8,6 @@ class BinarySearchTree:
         self.left = None
         self.right = None
 
-    # def __str__(self):
-    #     return f'{self.left}/{self.value}\{self.right}\n'
-
     # Insert the given value into the tree
 
     def insert(self, value):
@@ -66,17 +63,38 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            self.left.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.right.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        storage = Queue()
+        storage.enqueue(node)
+        while storage.len():
+            current_node = storage.dequeue()
+            print(current_node.value)
+            if current_node.left:
+                storage.enqueue(current_node.left)
+            if current_node.right:
+                storage.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self, node):
-        pass
+        storage = Stack()
+        storage.push(node)
+        while storage.len():
+            current_node = storage.pop()
+            print(current_node.value)
+            if current_node.left:
+                storage.push(current_node.left)
+            if current_node.right:
+                storage.push(current_node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
@@ -90,11 +108,17 @@ class BinarySearchTree:
         pass
 
 
-# bst = BinarySearchTree(5)
+bst = BinarySearchTree(1)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-# bst.insert(2)
-# bst.insert(3)
-# bst.insert(7)
-# bst.insert(6)
-
-# print(bst)
+# bst.in_order_print(bst)
+print("Breadth first: ")
+bst.bft_print(bst)
+print("Depth first: ")
+bst.dft_print(bst)
