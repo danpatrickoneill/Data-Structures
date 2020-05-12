@@ -49,7 +49,7 @@ class LRUCache:
         else:
             print(self.cache.head.value)
             self.cache.move_to_front(self.storage[key])
-            self.storage[key] = self.cache.head23231
+            self.storage[key] = self.cache.head
             if self.cache.head.value[1] != value:
                 print(self.cache.head.value)
                 self.cache.head.value = (key, value)
