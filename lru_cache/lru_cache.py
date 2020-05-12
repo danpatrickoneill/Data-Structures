@@ -25,6 +25,7 @@ class LRUCache:
     """
 
     def get(self, key):
+        print(self.storage, key)
         if key in self.storage:
             node = self.storage[key]
             self.cache.move_to_end(node)
@@ -47,7 +48,7 @@ class LRUCache:
             node = self.storage[key]
             # print("Node found: ", node)
             node.value = (key, value)
-            self.cache.move_to_end((node))
+            self.cache.move_to_end(node)
 
         else:
             if self.size == self.limit:

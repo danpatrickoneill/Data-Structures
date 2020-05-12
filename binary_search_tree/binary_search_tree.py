@@ -73,7 +73,7 @@ class BinarySearchTree:
     # in an iterative breadth first traversal
     def bft_print(self, node):
         storage = Queue()
-        storage.enqueue(node)
+        storage.enqueue(self)
         while storage.len():
             current_node = storage.dequeue()
             print(current_node.value)
@@ -103,9 +103,9 @@ class BinarySearchTree:
     def pre_order_dft(self, node):
         print(node.value)
         if node.left:
-            self.pre_order_dft(node.left)
+            node.pre_order_dft(node.left)
         if node.right:
-            self.pre_order_dft(node.right)
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
