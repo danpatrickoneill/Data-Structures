@@ -1,6 +1,5 @@
 from doubly_linked_list import DoublyLinkedList
 
-
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -49,7 +48,6 @@ class LRUCache:
             # print("Node found: ", node)
             node.value = (key, value)
             self.cache.move_to_end(node)
-
         else:
             if self.size == self.limit:
                 # print("Limit reached!")
