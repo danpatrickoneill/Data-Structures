@@ -8,6 +8,7 @@ class LRUCache:
     order, as well as a storage dict that provides fast access
     to every node stored in the cache.
     """
+
     def __init__(self, limit=10):
         self.limit = limit
         self.size = 0
@@ -21,10 +22,13 @@ class LRUCache:
     Returns the value associated with the key or None if the
     key-value pair doesn't exist in the cache.
     """
+
     def get(self, key):
+        print(self.storage, key)
         if key in self.storage:
-            self.cache.move_to_front(self.storage[key])
-            return self.storage[key].value[1]
+            node = self.storage[key]
+            self.cache.move_to_end(node)
+            return node.value[1]
         return None
 
     """
@@ -37,21 +41,20 @@ class LRUCache:
     want to overwrite the old value associated with the key with
     the newly-specified value.
     """
-    def set(self, key, value):
-        if key not in self.storage:
-            if self.size == self.limit:
-                removal_key = self.cache.remove_from_tail()[0]
-                del self.storage[removal_key]
-                self.size -= 1
-            self.cache.add_to_head((key, value))
-            self.storage[key] = self.cache.head
-            self.size += 1
-        else:
-            print(self.cache.head.value)
-            self.cache.move_to_front(self.storage[key])
-            self.storage[key] = self.cache.head
-            if self.cache.head.value[1] != value:
-                print(self.cache.head.value)
-                self.cache.head.value = (key, value)
-                print(self.cache.head.value)
 
+    def set(self, key, value):
+        if key in self.storage:
+            node = self.storage[key]
+            # print("Node found: ", node)
+            node.value = (key, value)
+            self.cache.move_to_end(node)
+        else:
+            if self.size == self.limit:
+                # print("Limit reached!")
+                node_value = self.cache.remove_from_head()
+                del self.storage[node_value[0]]
+                self.size -= 1
+
+            self.cache.add_to_tail((key, value))
+            self.storage[key] = self.cache.tail
+            self.size += 1
